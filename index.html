@@ -47,9 +47,7 @@
 </head>
 <body>
     <h1>LiteralCSS</h1>
-    <div id='snippet' class='css'>.titanic {
-    float: none;
-}</div>
+    <div id='snippet' class='css'></div>
 
     <script>
 
@@ -121,7 +119,7 @@
             }]
         ];
 
-        function randomSnippet() {
+        (window.randomSnippet = function() {
             // Select new
             var n = Math.round(Math.random() * (snippets.length - 1)),
                 newSnippet = snippets[n],
@@ -142,7 +140,7 @@
             // Replace
             var display = document.getElementById('snippet');
             display.innerHTML = html;
-        }
+        })();
 
         setInterval(randomSnippet,interval);
     </script>
