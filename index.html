@@ -50,7 +50,9 @@
 }</div>
 
     <script>
-        var snippets = [
+
+        var interval = 3000,
+            snippets = [
             ['#titanic', {
                 float: 'none',
                 'vertical-align': 'bottom'
@@ -58,12 +60,64 @@
             ['#neo', {
                 transform: 'matrix(0,1,0,1,0,1)'
             }],
+            ['#mexico', {
+                border: 'none'
+            }],
             ['.kkk', {
                 color: 'white !important'
+            }],
+            ['.defibrillators', {
+                clear: 'both'
+            }],
+            ['.autobots', {
+                transform: 'translate3d()'
+            }],
+            ['.biceps', {
+                display: 'flex'
+            }],
+            ['.dragon-ball', {
+                'z-index': '9001'
+            }],
+            ['.ikea', {
+                display: 'table'
+            }],
+            ['#moses > #sea', {
+                'column-count': 2
+            }],
+            ['.ninja', {
+                visibility: 'hidden'
+            }],
+            ['#mother-of-bambi', {
+                cursor: 'crosshair',
+                orphans: 1
+            }],
+            ['#big-bang:before', {
+                content: "''"
+            }],
+            ['#the-wife', {
+                right: '100%',
+                margin: '0'
+            }],
+            ['.a-religious-upbringing', {
+               perspective: 'inherit',
+               flex: 'none'
+            }],
+            ['td.insanse-asylum', {
+                padding: '10em'
+            }],
+            ['.hillbilly-sex', {
+                position: 'relative'
+            }],
+            ['*', {
+                position: 'relative'
+            }],
+            ['.beer-belly', {
+                overflow: 'visible'
+            }],
+            ['#NSA', {
+                opacity: '1'
             }]
         ];
-
-        var interval = 3000;
 
         function randomSnippet() {
             // Select new
