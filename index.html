@@ -3,14 +3,16 @@
 <head>
     <title>LiteralCSS</title>
     <style>
+        @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
         * {
             box-sizing: border-box;
         }
         html {
-            background: black;
+            background: #282828;
             color: white;
-            font-size: 24px;
-            font-family: monospace;
+            font-size: 40px;
+            font-family: 'Input Mono', 'Source Code Pro', 'monospace';
+            font-weight: 300;
         }
         h1 {
             margin-left: 20%;
@@ -18,7 +20,7 @@
             color: rgba(255,255,255,0.15);
             margin-top: 60px;
         }
-        #snippet {
+        .css {
             position: absolute;
             top: 20%;
             left: 20%;
@@ -26,20 +28,20 @@
             margin: 0 auto;
         }
         .syntax {
-          color: grey;
+          color: #b4d388;
         }
         .css__selector {
-          color: red;
+          color: #f49d60;
         }
         .css__line {
           margin-left: 1em;
           line-height: 1.5em;
         }
         .css__line__property {
-          color: green;
+          color: #8ebcbf;
         }
         .css__line__value {
-          color: yellow;
+          color: #ece871;
         }
     </style>
 </head>
