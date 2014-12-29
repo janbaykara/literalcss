@@ -3,6 +3,7 @@
 <head>
     <title>LiteralCSS</title>
     <style>
+        @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
         * {
             box-sizing: border-box;
         }
@@ -10,7 +11,8 @@
             background: #f5f2f0;
             color: white;
             font-size: 40px;
-            font-family: monospace;
+            font-family: 'Input Mono', 'Source Code Pro', 'monospace';
+            font-weight: 300;
         }
         h1 {
             margin-left: 20%;
@@ -18,11 +20,10 @@
             color: rgba(255,255,255,0.15);
             margin-top: 60px;
         }
-        .snippet {
+        .language-css {
             position: absolute;
             top: 20%;
             left: 20%;
-            white-space: pre;
             word-wrap: none;
             margin: 0 auto;
         }
@@ -33,35 +34,101 @@
 <body>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js'></script>
     <h1>LiteralCSS</h1>
-    <code id='snippet' class='language-css snippet'>.titanic {
-    float: none;
-}</code>
+    <code id='snippet' class='language-css snippet'></code>
 
     <script>
-        var snippets = [
-".titanic {\n\
-    float: none;\n\
-}",
-".leo {\n\
-    transform: matrix(0,1,0,1,0,1);\n\
-}",
-".kkk {\n\
-    color: white !important;\n\
-}",
-        ]
 
-        var interval = 5000;
+        var interval = 5000,
+            snippets = [
+            ['#titanic', {
+                float: 'none',
+                'vertical-align': 'bottom'
+            }],
+            ['#neo', {
+                transform: 'matrix(0,1,0,1,0,1)'
+            }],
+            ['#mexico', {
+                border: 'none'
+            }],
+            ['.kkk', {
+                color: 'white !important'
+            }],
+            ['.defibrillators', {
+                clear: 'both'
+            }],
+            ['.autobots', {
+                transform: 'translate3d()'
+            }],
+            ['.biceps', {
+                display: 'flex'
+            }],
+            ['.dragon-ball', {
+                'z-index': '9001'
+            }],
+            ['.ikea', {
+                display: 'table'
+            }],
+            ['#moses > #sea', {
+                'column-count': 2
+            }],
+            ['.ninja', {
+                visibility: 'hidden'
+            }],
+            ['#mother-of-bambi', {
+                cursor: 'crosshair',
+                orphans: 1
+            }],
+            ['#big-bang:before', {
+                content: "''"
+            }],
+            ['#the-wife', {
+                right: '100%',
+                margin: '0'
+            }],
+            ['.a-religious-upbringing', {
+               perspective: 'inherit',
+               flex: 'none'
+            }],
+            ['td.insanse-asylum', {
+                padding: '10em'
+            }],
+            ['.hillbilly-sex', {
+                position: 'relative'
+            }],
+            ['*', {
+                position: 'relative'
+            }],
+            ['.beer-belly', {
+                overflow: 'visible'
+            }],
+            ['#NSA', {
+                opacity: '0'
+            }],
+            ['.monarchy', {
+                position: 'inherit'
+            }],
+            ['#twin-towers', {
+                visibility: 'collapse'
+            }]
+        ];
 
-        function randomSnippet() {
+        (window.randomSnippet = function() {
             // Select new
-            var n = Math.round(Math.random() * (snippets.length - 1));
-            var newSnippet = snippets[n];
+            var n = Math.round(Math.random() * (snippets.length - 1)),
+                newSnippet = snippets[n],
+                selector = newSnippet[0],
+                properties = newSnippet[1],
+                html = selector+" {\n";
+            for(var name in properties) {
+                html += "   "+name+": "+properties[name]+";\n";
+            }
+            html += "}"
 
             // Replace
             var display = document.getElementById('snippet');
-            display.innerHTML = newSnippet;
+            display.innerHTML = html;
             Prism.highlightElement(display);
-        }
+        })();
 
         setInterval(randomSnippet,interval);
     </script>
