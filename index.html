@@ -1,57 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>LiteralCSS</title>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
         * {
             box-sizing: border-box;
         }
+
         html {
             background: #282828;
             color: white;
-            font-size: 40px;
+            font-size: 24px;
             font-family: 'Input Mono', 'Source Code Pro', 'monospace';
             font-weight: 300;
+            overflow-x: hidden;
         }
+
+        .span {
+            margin-left: 5%;
+            margin-top: 40px;
+            display: block;
+            clear: both;
+            float: none;
+        }
+
         h1 {
-            margin-left: 20%;
+            font-weight: normal;
             font-size: 22px;
-            color: rgba(255,255,255,0.15);
-            margin-top: 60px;
+            color: rgba(255,255,255,0.1);
         }
-        .css {
-            position: absolute;
-            top: 20%;
-            left: 20%;
+
+        code {
             word-wrap: none;
-            margin: 0 auto;
+            font: inherit;
         }
-        .syntax {
-          color: #b4d388;
-        }
-        .css__selector {
-          color: #f49d60;
-        }
-        .css__line {
+        .line {
           margin-left: 1em;
-          line-height: 1.5em;
+          line-height: 1.2em;
         }
-        .css__line__property {
-          color: #8ebcbf;
+        .line + .line {
+          margin-top: 0.2em;
         }
-        .css__line__value {
-          color: #ece871;
+        .syntax { color: #b4d388; }
+        .selector { color: #f49d60; }
+        .line__property { color: #8ebcbf; }
+        .line__value { color: #ece871; }
+
+        footer {
+            font-size: 50%;
+            color: rgba(255,255,255,0.1) !important;
+            position: absolute;
+            bottom: 60px;
+        }
+        footer a {
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        footer a:hover {
+            color: #f49d60;
+        }
+
+        @media screen and (min-width: 512px) {
+            html { font-size: 32px; }
+        }
+
+        @media screen and (min-width: 768px) {
+            html { font-size: 44px; }
+            .span {
+                margin-left: 20%;
+                margin-top: 80px;
+            }
+            footer { font-size: 30%; }
         }
     </style>
 </head>
 <body>
-    <h1>LiteralCSS</h1>
-    <div id='snippet' class='css'></div>
-
+    <h1 class='span'>LiteralCSS</h1>
+    <code id='snippet' class='span language-css'></code>
+    <footer class='span'>Snippets found from around the web. Assembled by <a href='mailto:jan@baykara.co.uk' target='_blank'>Jan Baykara</a>. <a href='https://github.com/janbaykara/literalcss'>Fork on Github</a>.</footer>
     <script>
 
-        var interval = 5000,
+        var interval = 6000,
             snippets = [
             ['#titanic', {
                 float: 'none',
@@ -131,12 +164,12 @@
                 newSnippet = snippets[n],
                 selector = newSnippet[0],
                 properties = newSnippet[1],
-                html = "<span class='css__selector'>"+selector+"</span> <span class='syntax'>{</span>\
-                        <div class='css__properties'>";
+                html = "<span class='selector'>"+selector+"</span> <span class='syntax'>{</span>\
+                        <div class='properties'>";
             for(var name in properties) {
-                var line = "<div class='css__line'>\
-                                <span class='css__line__property'>"+name+"</span><span class='syntax'>:</span>\
-                                <span class='css__line__value'>"+properties[name]+"</span><span class='syntax'>;</span>\
+                var line = "<div class='line'>\
+                                <span class='line__property'>"+name+"</span><span class='syntax'>:</span>\
+                                <span class='line__value'>"+properties[name]+"</span><span class='syntax'>;</span>\
                             </div>";
                 html += line;
             }
