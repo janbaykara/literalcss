@@ -22,41 +22,70 @@
             position: absolute;
             top: 20%;
             left: 20%;
-            white-space: pre;
             word-wrap: none;
             margin: 0 auto;
+        }
+        .syntax {
+          color: grey;
+        }
+        .css__selector {
+          color: red;
+        }
+        .css__line {
+          margin-left: 1em;
+          line-height: 1.5em;
+        }
+        .css__line__property {
+          color: green;
+        }
+        .css__line__value {
+          color: yellow;
         }
     </style>
 </head>
 <body>
     <h1>LiteralCSS</h1>
-    <div id='snippet'>.titanic {
+    <div id='snippet' class='css'>.titanic {
     float: none;
 }</div>
 
     <script>
         var snippets = [
-".titanic {\n\
-    float: none;\n\
-}",
-".leo {\n\
-    transform: matrix(0,1,0,1,0,1);\n\
-}",
-".kkk {\n\
-    color: white !important;\n\
-}",
-        ]
+            ['#titanic', {
+                float: 'none',
+                'vertical-align': 'bottom'
+            }],
+            ['#neo', {
+                transform: 'matrix(0,1,0,1,0,1)'
+            }],
+            ['.kkk', {
+                color: 'white !important'
+            }]
+        ];
 
         var interval = 3000;
 
         function randomSnippet() {
             // Select new
-            var n = Math.round(Math.random() * (snippets.length - 1));
-            var newSnippet = snippets[n];
+            var n = Math.round(Math.random() * (snippets.length - 1)),
+                newSnippet = snippets[n],
+                selector = newSnippet[0],
+                properties = newSnippet[1],
+                html = "<span class='css__selector'>"+selector+"</span> <span class='syntax'>{</span>\
+                        <div class='css__properties'>";
+            for(var name in properties) {
+                var line = "<div class='css__line'>\
+                                <span class='css__line__property'>"+name+"</span><span class='syntax'>:</span>\
+                                <span class='css__line__value'>"+properties[name]+"</span><span class='syntax'>;</span>\
+                            </div>";
+                html += line;
+            }
+            html +=     "</div>\
+                        <span class='syntax'>}</span>"
 
             // Replace
             var display = document.getElementById('snippet');
-            display.innerHTML = newSnippet;
+            display.innerHTML = html;
         }
 
         setInterval(randomSnippet,interval);
