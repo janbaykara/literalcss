@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>LiteralCSS</title>
     <style>
         @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
@@ -37,7 +38,6 @@
     <code id='snippet' class='language-css snippet'></code>
 
     <script>
-
         var interval = 5000,
             snippets = [
             ['#titanic', {
@@ -112,25 +112,26 @@
             }]
         ];
 
-        (window.randomSnippet = function() {
-            // Select new
+        (window.newSnippet = function() {
             var n = Math.round(Math.random() * (snippets.length - 1)),
-                newSnippet = snippets[n],
-                selector = newSnippet[0],
-                properties = newSnippet[1],
-                html = selector+" {\n";
-            for(var name in properties) {
-                html += "   "+name+": "+properties[name]+";\n";
-            }
-            html += "}"
+                html = generateSnippet(snippets[n]),
+                display = document.getElementById('snippet');
 
-            // Replace
-            var display = document.getElementById('snippet');
             display.innerHTML = html;
             Prism.highlightElement(display);
         })();
 
-        setInterval(randomSnippet,interval);
+        function generateSnippet(snippetArray) {
+            var html = snippetArray[0]+" {\n";
+            for(var name in snippetArray[1]) {
+                html += "   "+name+": "+snippetArray[1][name]+";\n";
+            }
+            html += "}"
+            return html;
+        }
+
+        setInterval(newSnippet,interval);
+
     </script>
 </body>
 </html>
