@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LiteralCSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            background: black;
+            color: white;
+            font-size: 24px;
+            font-family: monospace;
+        }
+        h1 {
+            margin-left: 20%;
+            font-size: 22px;
+            color: rgba(255,255,255,0.15);
+            margin-top: 60px;
+        }
+        #snippet {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            white-space: pre;
+            word-wrap: none;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>LiteralCSS</h1>
+    <div id='snippet'>.titanic {
+    float: none;
+}</div>
+
+    <script>
+        var snippets = [
+".titanic {\n\
+    float: none;\n\
+}",
+".leo {\n\
+    transform: matrix(0,1,0,1,0,1);\n\
+}",
+".kkk {\n\
+    color: white !important;\n\
+}",
+        ]
+
+        var interval = 3000;
+
+        function randomSnippet() {
+            // Select new
+            var n = Math.round(Math.random() * (snippets.length - 1));
+            var newSnippet = snippets[n];
+
+            // Replace
+            var display = document.getElementById('snippet');
+            display.innerHTML = newSnippet;
+        }
+
+        setInterval(randomSnippet,interval);
+    </script>
+</body>
+</html>
