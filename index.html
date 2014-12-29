@@ -7,7 +7,7 @@
             box-sizing: border-box;
         }
         html {
-            background: black;
+            background: #f5f2f0;
             color: white;
             font-size: 24px;
             font-family: monospace;
@@ -27,12 +27,14 @@
             margin: 0 auto;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" />
 </head>
 <body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js'></script>
     <h1>LiteralCSS</h1>
-    <div id='snippet'>.titanic {
+    <code id='snippet' class='language-css snippet'>.titanic {
     float: none;
-}</div>
+}</code>
 
     <script>
         var snippets = [
@@ -57,6 +59,7 @@
             // Replace
             var display = document.getElementById('snippet');
             display.innerHTML = newSnippet;
+            Prism.highlightElement(display);
         }
 
         setInterval(randomSnippet,interval);
